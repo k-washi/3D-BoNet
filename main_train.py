@@ -10,7 +10,7 @@ def train(net, data):
 		for i in range(total_train_batch_num):
 			###### training
 			bat_pc, _, _, bat_psem_onehot, bat_bbvert, bat_pmask = data.load_train_next_batch()
-			print(bat_pc.shape, bat_psem_onehot.shape, bat_bbvert.shape, bat_pmask.shape)
+			#print(bat_pc.shape, bat_psem_onehot.shape, bat_bbvert.shape, bat_pmask.shape)
 
 			_, ls_psemce, ls_bbvert_all, ls_bbvert_l2, ls_bbvert_ce, ls_bbvert_iou, ls_bbscore, ls_pmask = net.sess.run([
 			net.optim, net.psemce_loss, net.bbvert_loss, net.bbvert_loss_l2, net.bbvert_loss_ce, net.bbvert_loss_iou,net.bbscore_loss, net.pmask_loss],
