@@ -100,8 +100,10 @@ class Ops:
 
         def assign_mappings_valid_only(cost, gt_boxes):
             # return ordering : batch_size x num_instances
-            logging.debug(cost)
-            logging.debug(gt_boxes)
+
+            tf.print(cost)
+            tf.print(gt_boxes)
+
 
             loss_total = 0.
             batch_size, num_instances = cost.shape[:2]
@@ -116,7 +118,7 @@ class Ops:
                         ins_count += 1
                 valid_cost = cost[idx][:ins_count]
 
-                logging.debug(valid_cost)
+                tf.print(valid_cost)
                 row_ind, col_ind = linear_sum_assignment(valid_cost)
 
                 unmapped = num_instances - ins_count

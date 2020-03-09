@@ -17,7 +17,7 @@ def train(net, data):
 			except Exception as e:
 				print(e)
 				continue
-				
+
 			if i%200==0:
 				sum_train = net.sess.run(net.sum_merged,
 				feed_dict={net.X_pc: bat_pc[:, :, 0:9], net.Y_bbvert: bat_bbvert, net.Y_pmask: bat_pmask, net.Y_psem: bat_psem_onehot, net.lr: l_rate, net.is_train: False})
