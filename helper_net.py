@@ -1,6 +1,7 @@
 import numpy as np
 import tensorflow as tf
 from scipy.optimize import linear_sum_assignment
+import logging
 
 class Ops:
 
@@ -99,6 +100,9 @@ class Ops:
 
         def assign_mappings_valid_only(cost, gt_boxes):
             # return ordering : batch_size x num_instances
+            logging.debug(cost)
+            logging.debug(gt_boxes)
+
             loss_total = 0.
             batch_size, num_instances = cost.shape[:2]
             ordering = np.zeros(shape=[batch_size, num_instances]).astype(np.int32)
@@ -112,14 +116,8 @@ class Ops:
                         ins_count += 1
                 valid_cost = cost[idx][:ins_count]
 
-                try:
-                    row_ind, col_ind = linear_sum_assignment(valid_cost)
-                except Exception as e:
-                    import logging
-                    logging.error(e)
-                    logging.error(cost)
-                    logging.error(gt_boxes)
-                    logging.error(valid_cost)
+                logging.debug(valid_cost)
+                row_ind, col_ind = linear_sum_assignment(valid_cost)
 
                 unmapped = num_instances - ins_count
                 if unmapped > 0:
