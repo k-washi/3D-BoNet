@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 from scipy.optimize import linear_sum_assignment
-import logging
+import sys
 
 class Ops:
 
@@ -100,11 +100,8 @@ class Ops:
 
         def assign_mappings_valid_only(cost, gt_boxes):
             # return ordering : batch_size x num_instances
-
-            tf.print(cost)
-            tf.print(gt_boxes)
-
-
+            tf.print(cost, output_stream=sys.stderr)
+            tf.print(gt_boxes, output_stream=sys.stderr)
             loss_total = 0.
             batch_size, num_instances = cost.shape[:2]
             ordering = np.zeros(shape=[batch_size, num_instances]).astype(np.int32)
@@ -118,7 +115,7 @@ class Ops:
                         ins_count += 1
                 valid_cost = cost[idx][:ins_count]
 
-                tf.print(valid_cost)
+                tf.print(valid_cost, output_stream=sys.stderr)
                 row_ind, col_ind = linear_sum_assignment(valid_cost)
 
                 unmapped = num_instances - ins_count
