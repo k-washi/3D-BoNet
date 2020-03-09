@@ -6,25 +6,21 @@ def train(net, data):
 
 		data.shuffle_train_files(ep)
 		total_train_batch_num = data.total_train_batch_num
-		print('total train batch num:', total_train_batch_num)
+		print('total train batch nums:', total_train_batch_num)
 		for i in range(total_train_batch_num):
 			###### training
-			try:
-				bat_pc, _, _, bat_psem_onehot, bat_bbvert, bat_pmask = data.load_train_next_batch()
-				print("{0}, {1}, {2}, {4}".format(bat_pc.shape, bat_psem_onehot.shape, bat_bbvert.shape, bat_pmask.shape))
+			bat_pc, _, _, bat_psem_onehot, bat_bbvert, bat_pmask = data.load_train_next_batch()
+			print("{0}, {1}, {2}, {4}".format(bat_pc.shape, bat_psem_onehot.shape, bat_bbvert.shape, bat_pmask.shape))
 
-				_, ls_psemce, ls_bbvert_all, ls_bbvert_l2, ls_bbvert_ce, ls_bbvert_iou, ls_bbscore, ls_pmask = net.sess.run([
-				net.optim, net.psemce_loss, net.bbvert_loss, net.bbvert_loss_l2, net.bbvert_loss_ce, net.bbvert_loss_iou,net.bbscore_loss, net.pmask_loss],
-				feed_dict={net.X_pc:bat_pc[:, :, 0:9], net.Y_bbvert:bat_bbvert, net.Y_pmask:bat_pmask, net.Y_psem:bat_psem_onehot, net.lr:l_rate, net.is_train:True})
-			except Exception as e:
-				print(e)
-				continue
+			_, ls_psemce, ls_bbvert_all, ls_bbvert_l2, ls_bbvert_ce, ls_bbvert_iou, ls_bbscore, ls_pmask = net.sess.run([
+			net.optim, net.psemce_loss, net.bbvert_loss, net.bbvert_loss_l2, net.bbvert_loss_ce, net.bbvert_loss_iou,net.bbscore_loss, net.pmask_loss],
+			feed_dict={net.X_pc:bat_pc[:, :, 0:9], net.Y_bbvert:bat_bbvert, net.Y_pmask:bat_pmask, net.Y_psem:bat_psem_onehot, net.lr:l_rate, net.is_train:True})
 
 			if i%200==0:
 				sum_train = net.sess.run(net.sum_merged,
 				feed_dict={net.X_pc: bat_pc[:, :, 0:9], net.Y_bbvert: bat_bbvert, net.Y_pmask: bat_pmask, net.Y_psem: bat_psem_onehot, net.lr: l_rate, net.is_train: False})
 				net.sum_writer_train.add_summary(sum_train, ep*total_train_batch_num + i)
-			print ('ep', ep, 'i', i, 'psemce', ls_psemce, 'bbvert', ls_bbvert_all, 'l2', ls_bbvert_l2, 'ce', ls_bbvert_ce, 'siou', ls_bbvert_iou, 'bbscore', ls_bbscore, 'pmask', ls_pmask)
+			print ('zep', ep, 'i', i, 'psemce', ls_psemce, 'bbvert', ls_bbvert_all, 'l2', ls_bbvert_l2, 'ce', ls_bbvert_ce, 'siou', ls_bbvert_iou, 'bbscore', ls_bbscore, 'pmask', ls_pmask)
 
 			###### random testing
 			if i%200==0:
