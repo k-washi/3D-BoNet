@@ -111,6 +111,8 @@ class Ops:
                     else:
                         ins_count += 1
                 valid_cost = cost[idx][:ins_count]
+
+                print(valid_cost)
                 row_ind, col_ind = linear_sum_assignment(valid_cost)
                 unmapped = num_instances - ins_count
                 if unmapped > 0:
@@ -123,6 +125,9 @@ class Ops:
                 ordering[idx] = np.reshape(col_ind, [1, -1])
             return ordering, (loss_total / float(batch_size * num_instances)).astype(np.float32)
         ######
+        print("-" * 30)
+        print(loss_matrix)
+        print(bb_gt)
         ordering, loss_total = tf.py_func(assign_mappings_valid_only, [loss_matrix, bb_gt], [tf.int32, tf.float32])
 
         return ordering, loss_total
