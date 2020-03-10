@@ -1,4 +1,5 @@
 import os
+import pickle
 
 def train(net, data, eval = False, ep_num = 51):
 	l_ls_psemce = []
