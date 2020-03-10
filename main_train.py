@@ -75,7 +75,7 @@ def train(net, data, eval = False, ep_num = 51):
 		pickle.dump(l_ls_bbscore, f)
 
 	with open('ls_pmask.pickle', 'wb') as f:
-		pickle.dump(l_ls_pmask)
+		pickle.dump(l_ls_pmask, f)
 
 
 ############
