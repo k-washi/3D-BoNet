@@ -100,8 +100,8 @@ class Ops:
 
         def assign_mappings_valid_only(cost, gt_boxes):
             # return ordering : batch_size x num_instances
-            tf.print(cost, output_stream=sys.stderr)
-            tf.print(gt_boxes, output_stream=sys.stderr)
+            #tf.print(cost, output_stream=sys.stderr)
+            #tf.print(gt_boxes, output_stream=sys.stderr)
             loss_total = 0.
             batch_size, num_instances = cost.shape[:2]
             ordering = np.zeros(shape=[batch_size, num_instances]).astype(np.int32)
@@ -118,7 +118,7 @@ class Ops:
                 http://www.mycena.com.tw/jihunglin/BloodSugarMonitor/blob/master/venv/lib/python3.6/site-packages/scipy/optimize/_hungarian.py
                 inf, nanのcheckを入れる
                 """
-                tf.print(valid_cost, output_stream=sys.stderr)
+                #tf.print(valid_cost, output_stream=sys.stderr)
                 row_ind, col_ind = linear_sum_assignment(valid_cost)
 
                 unmapped = num_instances - ins_count
