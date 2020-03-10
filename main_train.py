@@ -1,6 +1,6 @@
 import os
 
-def train(net, data):
+def train(net, data, eval = False, ep_num = 51):
 	l_ls_psemce = []
 	l_ls_bbvert_all = []
 	l_ls_bbvert_l2 = []
@@ -9,7 +9,7 @@ def train(net, data):
 	l_ls_bbscore = []
 	l_ls_pmask = []
 
-	for ep in range(0, 51,1):
+	for ep in range(0, ep_num,1):
 		l_rate = max(0.0005/(2**(ep//20)), 0.00001)
 
 		data.shuffle_train_files(ep)
@@ -56,12 +56,13 @@ def train(net, data):
 				net.saver.save(net.sess, save_path=net.train_mod_dir + 'model' + str(ep).zfill(3) + '.cptk')
 
 			###### full eval, if needed
-			if ep%5==0 and i==total_train_batch_num-1:
-				from main_eval import Evaluation
-				result_path = './log/test_res/' + str(ep).zfill(3)+'_'+data.test_areas[0] + '/'
-				Evaluation.ttest(net, data, result_path, test_batch_size=20)
-				Evaluation.evaluation(data.dataset_path, data.train_areas, result_path)
-				print('full eval finished!')
+			if eval:
+				if ep%5==0 and i==total_train_batch_num-1:
+					from main_eval import Evaluation
+					result_path = './log/test_res/' + str(ep).zfill(3)+'_'+data.test_areas[0] + '/'
+					Evaluation.ttest(net, data, result_path, test_batch_size=20)
+					Evaluation.evaluation(data.dataset_path, data.train_areas, result_path)
+					print('full eval finished!')
 	
 	with open('ls_psemce.pickle', 'wb') as f:
 		pickle.dump(l_ls_psemce, f)
