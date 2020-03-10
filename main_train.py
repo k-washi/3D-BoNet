@@ -1,6 +1,14 @@
 import os
 
 def train(net, data):
+	l_ls_psemce = []
+	l_ls_bbvert_all = []
+	l_ls_bbvert_l2 = []
+	l_ls_bbvert_ce = []
+	l_ls_bbvert_iou = []
+	l_ls_bbscore = []
+	l_ls_pmask = []
+
 	for ep in range(0, 51,1):
 		l_rate = max(0.0005/(2**(ep//20)), 0.00001)
 
@@ -21,6 +29,14 @@ def train(net, data):
 				feed_dict={net.X_pc: bat_pc[:, :, 0:9], net.Y_bbvert: bat_bbvert, net.Y_pmask: bat_pmask, net.Y_psem: bat_psem_onehot, net.lr: l_rate, net.is_train: False})
 				net.sum_writer_train.add_summary(sum_train, ep*total_train_batch_num + i)
 			print ('zep', ep, 'i', i, 'psemce', ls_psemce, 'bbvert', ls_bbvert_all, 'l2', ls_bbvert_l2, 'ce', ls_bbvert_ce, 'siou', ls_bbvert_iou, 'bbscore', ls_bbscore, 'pmask', ls_pmask)
+
+			l_ls_psemce.append(ls_psemce)
+			l_ls_bbvert_all.append(ls_bbvert_all)
+			l_ls_bbvert_l2.append(ls_bbvert_l2)
+			l_ls_bbvert_ce.append(ls_bbvert_ce)
+			l_ls_bbvert_iou.append(ls_bbvert_iou)
+			l_ls_bbscore.append(ls_bbscore)
+			l_ls_pmask.append(ls_pmask)
 
 			###### random testing
 			if i%200==0:
@@ -46,6 +62,18 @@ def train(net, data):
 				Evaluation.ttest(net, data, result_path, test_batch_size=20)
 				Evaluation.evaluation(data.dataset_path, data.train_areas, result_path)
 				print('full eval finished!')
+	
+	with open('ls_psemce.pickle', 'wb') as f:
+		pickle.dump(l_ls_psemce, f)
+	
+	with open('ls_bbvert.pickle', 'wb') as f:
+		pickle.dump(l_ls_bbvert_all, f)
+	
+	with open('ls_bbscore.pickle', 'wb') as f:
+		pickle.dump(l_ls_bbscore, f)
+
+	with open('ls_pmask.pickle', 'wb') as f:
+		pickle.dump(l_ls_pmask)
 
 
 ############
