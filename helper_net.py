@@ -113,7 +113,12 @@ class Ops:
                         break
                     else:
                         ins_count += 1
+                
                 valid_cost = cost[idx][:ins_count]
+
+                #infに対応
+                valid_cost[np.isinf(valid_cost) == True] = 10**6
+                valid_cost = valid_cost.astype(np.int)
                 """
                 http://www.mycena.com.tw/jihunglin/BloodSugarMonitor/blob/master/venv/lib/python3.6/site-packages/scipy/optimize/_hungarian.py
                 inf, nanのcheckを入れる

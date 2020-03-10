@@ -1,7 +1,16 @@
 import os
+import pickle
 
-def train(net, data):
-	for ep in range(0, 51,1):
+def train(net, data, eval = False, ep_num = 51):
+	l_ls_psemce = []
+	l_ls_bbvert_all = []
+	l_ls_bbvert_l2 = []
+	l_ls_bbvert_ce = []
+	l_ls_bbvert_iou = []
+	l_ls_bbscore = []
+	l_ls_pmask = []
+
+	for ep in range(0, ep_num,1):
 		l_rate = max(0.0005/(2**(ep//20)), 0.00001)
 
 		data.shuffle_train_files(ep)
@@ -22,6 +31,14 @@ def train(net, data):
 				net.sum_writer_train.add_summary(sum_train, ep*total_train_batch_num + i)
 			print ('zep', ep, 'i', i, 'psemce', ls_psemce, 'bbvert', ls_bbvert_all, 'l2', ls_bbvert_l2, 'ce', ls_bbvert_ce, 'siou', ls_bbvert_iou, 'bbscore', ls_bbscore, 'pmask', ls_pmask)
 
+			l_ls_psemce.append(ls_psemce)
+			l_ls_bbvert_all.append(ls_bbvert_all)
+			l_ls_bbvert_l2.append(ls_bbvert_l2)
+			l_ls_bbvert_ce.append(ls_bbvert_ce)
+			l_ls_bbvert_iou.append(ls_bbvert_iou)
+			l_ls_bbscore.append(ls_bbscore)
+			l_ls_pmask.append(ls_pmask)
+
 			###### random testing
 			if i%200==0:
 				bat_pc, _, _, bat_psem_onehot, bat_bbvert, bat_pmask = data.load_test_next_batch_random()
@@ -40,12 +57,25 @@ def train(net, data):
 				net.saver.save(net.sess, save_path=net.train_mod_dir + 'model' + str(ep).zfill(3) + '.cptk')
 
 			###### full eval, if needed
-			if ep%5==0 and i==total_train_batch_num-1:
-				from main_eval import Evaluation
-				result_path = './log/test_res/' + str(ep).zfill(3)+'_'+test_areas[0] + '/'
-				Evaluation.ttest(net, data, result_path, test_batch_size=20)
-				Evaluation.evaluation(dataset_path, train_areas, result_path)
-				print('full eval finished!')
+			if eval:
+				if ep%5==0 and i==total_train_batch_num-1:
+					from main_eval import Evaluation
+					result_path = './log/test_res/' + str(ep).zfill(3)+'_'+data.test_areas[0] + '/'
+					Evaluation.ttest(net, data, result_path, test_batch_size=20)
+					Evaluation.evaluation(data.dataset_path, data.train_areas, result_path)
+					print('full eval finished!')
+	
+	with open('ls_psemce.pickle', 'wb') as f:
+		pickle.dump(l_ls_psemce, f)
+	
+	with open('ls_bbvert.pickle', 'wb') as f:
+		pickle.dump(l_ls_bbvert_all, f)
+	
+	with open('ls_bbscore.pickle', 'wb') as f:
+		pickle.dump(l_ls_bbscore, f)
+
+	with open('ls_pmask.pickle', 'wb') as f:
+		pickle.dump(l_ls_pmask)
 
 
 ############
