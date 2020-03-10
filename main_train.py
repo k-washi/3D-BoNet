@@ -42,9 +42,9 @@ def train(net, data):
 			###### full eval, if needed
 			if ep%5==0 and i==total_train_batch_num-1:
 				from main_eval import Evaluation
-				result_path = './log/test_res/' + str(ep).zfill(3)+'_'+test_areas[0] + '/'
+				result_path = './log/test_res/' + str(ep).zfill(3)+'_'+data.test_areas[0] + '/'
 				Evaluation.ttest(net, data, result_path, test_batch_size=20)
-				Evaluation.evaluation(dataset_path, train_areas, result_path)
+				Evaluation.evaluation(data.dataset_path, data.train_areas, result_path)
 				print('full eval finished!')
 
 
