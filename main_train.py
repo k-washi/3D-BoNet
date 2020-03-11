@@ -11,7 +11,7 @@ def train(net, data, eval=False, start_ep=0, ep_num=51):
     l_ls_bbscore = []
     l_ls_pmask = []
 
-    for ep in range(start_ep, ep_num, 1):
+    for ep in range(start_ep, start_ep + ep_num, 1):
         l_rate = max(0.0005 / (2 ** (ep // 20)), 0.00001)
 
         data.shuffle_train_files(ep)
