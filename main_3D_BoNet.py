@@ -204,6 +204,7 @@ class BoNet:
 		self.saver = tf.train.Saver(max_to_keep=20)
 		config = tf.ConfigProto(allow_soft_placement=True)
 		config.gpu_options.visible_device_list = GPU
+		config.gpu_options.per_process_gpu_memory_fraction = 0.8
 		self.sess = tf.Session(config=config)
 		self.sum_writer_train = tf.summary.FileWriter(self.train_sum_dir, self.sess.graph)
 		self.sum_write_test = tf.summary.FileWriter(self.test_sum_dir)
