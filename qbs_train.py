@@ -90,6 +90,7 @@ def train(net, data, eval=False, start_ep=0, ep_num=51):
     with open('./log/ls_pmask.pickle', 'wb') as f:
         pickle.dump(l_ls_pmask, f)
 
+    net.saver.save(net.sess, save_path=net.train_mod_dir + 'model_fin.cptk')
 
 ############
 if __name__ == '__main__':

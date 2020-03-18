@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca9028c9-0f1a-4076-a04f-3f66324791ba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/qbs_eval.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qbs_train_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_eval.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qbs_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/qbs_train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
