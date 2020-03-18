@@ -201,6 +201,60 @@ class DATA_QBS(object):
         self.train_next_bat_index += 1
         return bat_pc, bat_sem_labels, bat_ins_labels, bat_psem_onehot_labels, bat_bbvert_padded_labels, bat_pmask_padded_labels
 
+    def load_test_next_batch_random(self):
+        idx = random.sample(range(len(self.test_files)), self.train_batch_size)
+        bat_pc = []
+        bat_sem_labels = []
+        bat_ins_labels = []
+        bat_psem_onehot_labels = []
+        bat_bbvert_padded_labels = []
+        bat_pmask_padded_labels = []
+        for i in idx:
+            file = self.test_files[i]
+            pc, sem_labels, ins_labels, psem_onehot_labels, bbvert_padded_labels, pmask_padded_labels = DATA_QBS.load_fixed_points(
+                file)
+            bat_pc.append(pc)
+            bat_sem_labels.append(sem_labels)
+            bat_ins_labels.append(ins_labels)
+            bat_psem_onehot_labels.append(psem_onehot_labels)
+            bat_bbvert_padded_labels.append(bbvert_padded_labels)
+            bat_pmask_padded_labels.append(pmask_padded_labels)
+
+        bat_pc = np.asarray(bat_pc, dtype=np.float32)
+        bat_sem_labels = np.asarray(bat_sem_labels, dtype=np.float32)
+        bat_ins_labels = np.asarray(bat_ins_labels, dtype=np.float32)
+        bat_psem_onehot_labels = np.asarray(bat_psem_onehot_labels, dtype=np.float32)
+        bat_bbvert_padded_labels = np.asarray(bat_bbvert_padded_labels, dtype=np.float32)
+        bat_pmask_padded_labels = np.asarray(bat_pmask_padded_labels, dtype=np.float32)
+
+        return bat_pc, bat_sem_labels, bat_ins_labels, bat_psem_onehot_labels, bat_bbvert_padded_labels, bat_pmask_padded_labels
+
+    def load_test_next_batch_sq(self, bat_files):
+        bat_pc = []
+        bat_sem_labels = []
+        bat_ins_labels = []
+        bat_psem_onehot_labels = []
+        bat_bbvert_padded_labels = []
+        bat_pmask_padded_labels = []
+        for file in bat_files:
+            pc, sem_labels, ins_labels, psem_onehot_labels, bbvert_padded_labels, pmask_padded_labels = DATA_QBS.load_fixed_points(
+                file)
+            bat_pc += [pc]
+            bat_sem_labels += [sem_labels]
+            bat_ins_labels += [ins_labels]
+            bat_psem_onehot_labels += [psem_onehot_labels]
+            bat_bbvert_padded_labels += [bbvert_padded_labels]
+            bat_pmask_padded_labels += [pmask_padded_labels]
+
+        bat_pc = np.asarray(bat_pc, dtype=np.float32)
+        bat_sem_labels = np.asarray(bat_sem_labels, dtype=np.float32)
+        bat_ins_labels = np.asarray(bat_ins_labels, dtype=np.float32)
+        bat_psem_onehot_labels = np.asarray(bat_psem_onehot_labels, dtype=np.float32)
+        bat_bbvert_padded_labels = np.asarray(bat_bbvert_padded_labels, dtype=np.float32)
+        bat_pmask_padded_labels = np.asarray(bat_pmask_padded_labels, dtype=np.float32)
+
+        return bat_pc, bat_sem_labels, bat_ins_labels, bat_psem_onehot_labels, bat_bbvert_padded_labels, bat_pmask_padded_labels, bat_files
+
     def shuffle_train_files(self, ep):
         index = list(range(len(self.train_files)))
         random.seed(ep)
@@ -217,5 +271,4 @@ if __name__ == '__main__':
     train_ids = [0]
     test_ids = [1]
     data = DATA_QBS(h5_data_path, train_ids, test_ids, train_batch_size=4)
-    _, _, ins, _, _, _ = data.load_train_next_batch()
-    print(ins)
+    _, _, _, _, _, _ = data.load_train_next_batch()
