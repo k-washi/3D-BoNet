@@ -306,7 +306,6 @@ if __name__ == '__main__':
 
     configs = Data_Configs()
     net = BoNet(configs=configs)
-    net.creat_folders(name='log', re_train=False)
 
     net.build_graph()
 
@@ -316,7 +315,7 @@ if __name__ == '__main__':
     train_areas = [1, 2]
     test_areas = [0]
 
-    result_path = './log/test_res/' + test_areas[0] + '/'
+    result_path = './log/test_res/area_' + str(test_areas[0]) + '/'
 
     net, data = Evaluation.load_net_data(dataset_path, train_areas, test_areas, model_path)
     Evaluation.ttest(net, data, result_path, test_batch_size=20)
