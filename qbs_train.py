@@ -115,8 +115,8 @@ if __name__ == '__main__':
     ####
     from qbs_data_helper import DATA_QBS as Data
 
-    train_areas = [0]
-    test_areas = [1]
+    train_areas = [1, 2]
+    test_areas = [0]
 
 
     data = Data(dataset_path, train_areas, test_areas, train_batch_size=4)
