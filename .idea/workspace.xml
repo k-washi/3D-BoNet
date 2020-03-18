@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca9028c9-0f1a-4076-a04f-3f66324791ba" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/3D-BoNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/3D-BoNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/all_ep10/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/all_ep10/model.cptk.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/all_ep10/model.cptk.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/all_ep10/model.cptk.meta" beforeDir="false" />
-    </list>
+    <list default="true" id="ca9028c9-0f1a-4076-a04f-3f66324791ba" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
