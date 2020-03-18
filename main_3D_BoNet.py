@@ -216,5 +216,4 @@ class BoNet:
 		else:
 			print ("model not found, all weights are initilized")
 			self.sess.run(tf.global_variables_initializer())
-
 		return 0

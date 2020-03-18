@@ -102,6 +102,7 @@ if __name__ == '__main__':
     configs = Data_Configs()
     net = BoNet(configs=configs)
     net.creat_folders(name='log', re_train=False)
+
     net.build_graph()
 
     ####
@@ -110,6 +111,6 @@ if __name__ == '__main__':
     train_areas = [0]
     test_areas = [1]
 
-    dataset_path = './data_s3dis/'
+    dataset_path = '../qbs_train_data/'
     data = Data(dataset_path, train_areas, test_areas, train_batch_size=4)
     train(net, data)
