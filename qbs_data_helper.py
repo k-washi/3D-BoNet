@@ -13,7 +13,7 @@ class Data_Configs:
 
     points_cc = 6  # [x, y, z, x_normal, y_normal, z_normal #  color情報なし[, c_R, c_G, c_B]
     sem_num = len(sem_names)
-    ins_max_num = 24
+    ins_max_num = 40
     train_pts_num = 4096
     test_pts_num = 4096
 

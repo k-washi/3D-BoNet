@@ -11,18 +11,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>bbvert_association</find>
-      <find>gather_tensor_along_2nd_axis</find>
-      <find>train_are</find>
-      <find>box_mask</find>
-      <find>bbvert_a</find>
-      <find>random</find>
-      <find>optim</find>
-      <find>train_mod_dir</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
