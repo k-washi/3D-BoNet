@@ -301,16 +301,8 @@ if __name__ == '__main__':
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     os.environ["CUDA_VISIBLE_DEVICES"] = '0'  ## specify the GPU to use
 
-    from main_3D_BoNet import BoNet
-    from qbs_data_helper import Data_Configs as Data_Configs
-
-    configs = Data_Configs()
-    net = BoNet(configs=configs)
-
-    net.build_graph()
-
     ####
-    from qbs_data_helper import DATA_QBS as Data
+    #from qbs_data_helper import DATA_QBS as Data
 
     train_areas = [1, 2]
     test_areas = [0]
