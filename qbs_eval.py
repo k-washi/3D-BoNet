@@ -65,7 +65,7 @@ class Eval_Tools:
 
     @staticmethod
     def get_mean_insSize_by_sem(dataset_path, train_areas):
-        from helper_data_s3dis import Data_Configs as Data_Configs
+        from qbs_data_helper import Data_Configs as Data_Configs
         configs = Data_Configs()
 
         mean_insSize_by_sem = {}
@@ -123,7 +123,7 @@ class Evaluation:
         print('Model restored sucessful!')
 
         ####### 3. load data
-        from helper_data_s3dis import Data_S3DIS as Data
+        from qbs_data_helper import DATA_QBS as Data
         data = Data(dataset_path, train_areas, test_areas)
 
         return net, data
