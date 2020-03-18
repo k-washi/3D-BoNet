@@ -289,34 +289,13 @@ class Evaluation:
 
 #######################
 if __name__ == '__main__':
-    import argparse
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-i', default='./qbs_train_data', help='path to input directory: pickle形式')
-    parser.add_argument('-m', default='./log/train_mod/model.cptk',
-                        help="path to trained model, ex: ./model_released/model.cptk")
-    args = parser.parse_args()
-    dataset_path = args.i
-
-    model_path = args.m
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     os.environ["CUDA_VISIBLE_DEVICES"] = '0'  ## specify the GPU to use
 
-    from main_3D_BoNet import BoNet
-    from qbs_data_helper import Data_Configs as Data_Configs
-
-    configs = Data_Configs()
-    net = BoNet(configs=configs)
-    net.creat_folders(name='log', re_train=False)
-
-    net.build_graph()
-
-    ####
-    from qbs_data_helper import DATA_QBS as Data
-
-    train_areas = [1,2]
-    test_areas = [0]
-
+    dataset_path = './data_s3dis/'
+    train_areas = ['Area_1', 'Area_2', 'Area_3', 'Area_4', 'Area_6']
+    test_areas = ['Area_5']
+    model_path = './model_released/model.cptk'
     result_path = './log/test_res/' + test_areas[0] + '/'
 
     net, data = Evaluation.load_net_data(dataset_path, train_areas, test_areas, model_path)
