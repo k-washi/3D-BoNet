@@ -144,7 +144,7 @@ class Evaluation:
 
                 [y_psem_pred_sq_raw, y_bbvert_pred_sq_raw, y_bbscore_pred_sq_raw, y_pmask_pred_sq_raw] = \
                     net.sess.run([net.y_psem_pred, net.y_bbvert_pred_raw, net.y_bbscore_pred_raw, net.y_pmask_pred_raw],
-                                 feed_dict={net.X_pc: bat_pc[:, :, 0:9], net.is_train: False})
+                                 feed_dict={net.X_pc: bat_pc[:, :, 0:6], net.is_train: False})
 
                 for b in range(len(t_files)):
                     pc = np.asarray(bat_pc[b], dtype=np.float16)
