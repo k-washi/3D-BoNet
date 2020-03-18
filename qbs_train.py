@@ -93,6 +93,13 @@ def train(net, data, eval=False, start_ep=0, ep_num=51):
 
 ############
 if __name__ == '__main__':
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', default='./qbs_train_data', help='path to input directory: pickle形式')
+    args = parser.parse_args()
+    dataset_path = args.i
+
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     os.environ["CUDA_VISIBLE_DEVICES"] = '0'  ## specify the GPU to use
 
@@ -111,6 +118,6 @@ if __name__ == '__main__':
     train_areas = [0]
     test_areas = [1]
 
-    dataset_path = '../qbs_train_data/'
+
     data = Data(dataset_path, train_areas, test_areas, train_batch_size=4)
     train(net, data)
