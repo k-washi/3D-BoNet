@@ -73,7 +73,7 @@ class Eval_Tools:
 
         for a in train_areas:
             print('get mean insSize, check train area:', a)
-            files = sorted(glob.glob(dataset_path + a + '*.h5'))
+            files = sorted(glob.glob(dataset_path + '/area_' + str(a) + '.h5'))
             for file_path in files:
                 fin = h5py.File(file_path, 'r')
                 semIns_labels = fin['labels'][:].reshape([-1, 2])
@@ -208,7 +208,7 @@ class Evaluation:
                 pmask_pred = pmask_pred_raw * np.tile(bbscore_pred_raw[:, None], [1, pmask_pred_raw.shape[-1]])
                 ins_pred = np.argmax(pmask_pred, axis=-2)
                 ins_sem_dic = Eval_Tools.get_sem_for_ins(ins_by_pts=ins_pred, sem_by_pts=sem_pred)
-                Eval_Tools.BlockMerging(volume, volume_sem, pc[:, 6:9], ins_pred, ins_sem_dic, gap)
+                Eval_Tools.BlockMerging(volume, volume_sem, pc[:, 3:6], ins_pred, ins_sem_dic, gap)
 
                 pc_all.append(pc)
                 ins_gt_all.append(ins_gt)
@@ -220,7 +220,7 @@ class Evaluation:
             sem_pred_all = np.concatenate(sem_pred_all, axis=0)
             sem_gt_all = np.concatenate(sem_gt_all, axis=0)
 
-            pc_xyz_int = (pc_all[:, 6:9] / gap).astype(np.int32)
+            pc_xyz_int = (pc_all[:, 3:6] / gap).astype(np.int32)
             ins_pred_all = volume[tuple(pc_xyz_int.T)]
 
             ###################

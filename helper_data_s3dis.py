@@ -72,7 +72,7 @@ class Data_S3DIS:
         points = fin['points'][block_id]
         semIns_labels = fin['labels'][block_id]
 
-        pc = np.concatenate([coords, points[:,3:9]], axis=-1)
+        pc = np.concatenate([coords, points[:,3:9]], axis=-1) # rgb xyz(normal)
         sem_labels = semIns_labels[:,0]
         ins_labels = semIns_labels[:,1]
 
