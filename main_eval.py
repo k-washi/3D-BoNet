@@ -26,7 +26,7 @@ class Eval_Tools:
         ins_idx, cnt = np.unique(ins_by_pts, return_counts=True)
         for ins_id, cn in zip(ins_idx, cnt):
             if ins_id == -1:
-				continue  # empty ins
+                continue  # empty ins
             temp = sem_by_pts[np.argwhere(ins_by_pts == ins_id)][:, 0]
             sem_for_this_ins = scipy.stats.mode(temp)[0][0]
             ins_cls_dic[ins_id] = sem_for_this_ins

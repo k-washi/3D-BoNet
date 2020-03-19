@@ -1,3 +1,4 @@
+#coding:utf-8
 """
 Operation作成に伴うcuda, cppのコンパイル コマンドの出力
 https://www.tensorflow.org/guide/create_op

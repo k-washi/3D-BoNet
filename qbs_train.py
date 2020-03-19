@@ -1,3 +1,4 @@
+#coding:utf-8
 import os
 import pickle
 
@@ -92,7 +93,7 @@ def train(net, data, eval=False, start_ep=0, ep_num=51):
 
     net.saver.save(net.sess, save_path=net.train_mod_dir + 'model_fin.cptk')
 
-############
+##
 if __name__ == '__main__':
     import argparse
 
