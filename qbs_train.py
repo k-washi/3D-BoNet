@@ -100,11 +100,14 @@ if __name__ == '__main__':
     parser.add_argument('-i', default='./qbs_train_data', help='path to input directory: pickle形式')
     parser.add_argument('-s', default=0, type=int, help='start episode number')
     parser.add_argument('-e', default=51, type=int, help='num of episode')
+    parser.add_argument('-c', default='./cnofig/config.ini', help='path to config.ini')
     args = parser.parse_args()
     dataset_path = args.i
 
     ep_start = args.s
     num_ep = args.e
+
+
 
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     os.environ["CUDA_VISIBLE_DEVICES"] = '0'  ## specify the GPU to use
@@ -121,8 +124,12 @@ if __name__ == '__main__':
     ####
     from qbs_data_helper import DATA_QBS as Data
 
-    train_areas = [1, 2]
-    test_areas = [0]
+    config_path = args.c
+    from qbs_configure import get_connfigure
+
+    c_dic = get_connfigure(config_path)
+    train_areas = c_dic['train']
+    test_areas = c_dic['eval']
 
 
     data = Data(dataset_path, train_areas, test_areas, train_batch_size=4)

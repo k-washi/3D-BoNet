@@ -65,6 +65,12 @@ class Eval_Tools:
 
     @staticmethod
     def get_mean_insSize_by_sem(dataset_path, train_areas):
+        """
+
+        :param dataset_path:
+        :param train_areas:
+        :return:
+        """
         from qbs_data_helper import Data_Configs as Data_Configs
         configs = Data_Configs()
 
@@ -82,11 +88,12 @@ class Eval_Tools:
 
                 ins_idx = np.unique(ins_labels)
                 for ins_id in ins_idx:
-                    tmp = (ins_labels == ins_id)
-                    sem = scipy.stats.mode(sem_labels[tmp])[0][0]
-                    mean_insSize_by_sem[sem].append(np.sum(np.asarray(tmp, dtype=np.float32)))
+                    tmp = (ins_labels == ins_id) # インスタンスラベルが一致する点を計算
+                    sem = scipy.stats.mode(sem_labels[tmp])[0][0] # もっとも多く存在する分類ラベルは？？
+                    mean_insSize_by_sem[sem].append(np.sum(np.asarray(tmp, dtype=np.float32))) # 分類ラベルに一致するインスタンの点数
 
-        for sem in mean_insSize_by_sem: mean_insSize_by_sem[sem] = np.mean(mean_insSize_by_sem[sem])
+        for sem in mean_insSize_by_sem:
+            mean_insSize_by_sem[sem] = np.mean(mean_insSize_by_sem[sem]) #平均は??
 
         return mean_insSize_by_sem
 
@@ -172,6 +179,7 @@ class Evaluation:
         configs = Data_Configs()
         mean_insSize_by_sem = Eval_Tools.get_mean_insSize_by_sem(dataset_path, train_areas)
 
+        print("それぞれの分類ラベルの各インスタンスの点数の平均:", mean_insSize_by_sem)
         TP_FP_Total = {}
         for sem_id in configs.sem_ids:
             TP_FP_Total[sem_id] = {}
@@ -190,13 +198,14 @@ class Evaluation:
             sem_pred_all = [];
             sem_gt_all = []
             gap = 5e-3
-            volume_num = int(1. / gap) + 2
+            volume_num = int(1. / gap) + 2 # 600
             volume = -1 * np.ones([volume_num, volume_num, volume_num]).astype(np.int32)
             volume_sem = -1 * np.ones([volume_num, volume_num, volume_num]).astype(np.int32)
 
             for i in range(len(scene_result)):
                 block = 'block_' + str(i).zfill(4)
-                if block not in scene_result: continue
+                if block not in scene_result:
+                    continue
                 pc = scene_result[block][0]['pc'][0]
                 ins_gt = scene_result[block][0]['ins_gt'][0][0]
                 sem_gt = scene_result[block][0]['sem_gt'][0][0]
@@ -294,6 +303,8 @@ if __name__ == '__main__':
     parser.add_argument('-i', default='./qbs_train_data', help='path to input directory: pickle形式')
     parser.add_argument('-m', default='./log/train_mod/model.cptk',
                         help="path to trained model, ex: ./model_released/model.cptk")
+    parser.add_argument('-c', default='./cnofig/config.ini', help='path to config.ini')
+
     args = parser.parse_args()
     dataset_path = args.i
 
@@ -304,8 +315,12 @@ if __name__ == '__main__':
     ####
     #from qbs_data_helper import DATA_QBS as Data
 
-    train_areas = [1, 2]
-    test_areas = [0]
+    config_path = args.c
+    from qbs_configure import get_connfigure
+
+    c_dic = get_connfigure(config_path)
+    train_areas = c_dic['train']
+    test_areas = c_dic['eval']
 
     result_path = './log/test_res/area_' + str(test_areas[0]) + '/'
 

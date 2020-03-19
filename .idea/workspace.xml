@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca9028c9-0f1a-4076-a04f-3f66324791ba" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/config/config.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qbs_configure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helper_data_s3dis.py" beforeDir="false" afterPath="$PROJECT_DIR$/helper_data_s3dis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_eval.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qbs_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/qbs_eval.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qbs_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/qbs_train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qbs_train_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/qbs_train_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +44,33 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/config" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.qbs_configure">
+    <configuration name="qbs_configure" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="3D-BoNet" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/qbs_configure.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="qbs_data_helper" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="3D-BoNet" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -63,6 +94,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.qbs_configure" />
         <item itemvalue="Python.qbs_data_helper" />
       </list>
     </recent_temporary>
@@ -81,22 +113,26 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1419" height="245" key="GridCell.Tab.0.bottom" timestamp="1584498712085">
+    <state x="438" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584591122835">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1584498712085" />
-    <state width="1419" height="245" key="GridCell.Tab.0.center" timestamp="1584498712084">
+    <state x="438" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1584591122835" />
+    <state width="1419" height="245" key="GridCell.Tab.0.bottom" timestamp="1584591897808">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1584498712084" />
-    <state width="1419" height="245" key="GridCell.Tab.0.left" timestamp="1584498712083">
+    <state width="1419" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1584591897808" />
+    <state width="1419" height="245" key="GridCell.Tab.0.center" timestamp="1584591897806">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1584498712083" />
-    <state width="1419" height="245" key="GridCell.Tab.0.right" timestamp="1584498712084">
+    <state width="1419" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1584591897806" />
+    <state width="1419" height="245" key="GridCell.Tab.0.left" timestamp="1584591897806">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1584498712084" />
+    <state width="1419" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1584591897806" />
+    <state width="1419" height="245" key="GridCell.Tab.0.right" timestamp="1584591897807">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1584591897807" />
     <state x="221" y="89" key="SettingsEditor" timestamp="1584506183295">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
