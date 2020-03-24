@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ca9028c9-0f1a-4076-a04f-3f66324791ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_eval.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +42,8 @@
       <recent name="$PROJECT_DIR$/config" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.qbs_configure">
-    <configuration name="qbs_configure" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.pc_configure">
+    <configuration name="pc_configure" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="3D-BoNet" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -56,7 +55,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/qbs_configure.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pc_configure.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -65,7 +64,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="qbs_data_helper" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="pc_data_helper" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="3D-BoNet" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -77,7 +76,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/qbs_data_helper.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pc_data_helper.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -88,8 +87,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.qbs_configure" />
-        <item itemvalue="Python.qbs_data_helper" />
+        <item itemvalue="Python.pc_configure" />
+        <item itemvalue="Python.pc_data_helper" />
       </list>
     </recent_temporary>
   </component>
@@ -111,25 +110,29 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="438" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1584591122835" />
-    <state width="1419" height="245" key="GridCell.Tab.0.bottom" timestamp="1584592586449">
+    <state width="1419" height="245" key="GridCell.Tab.0.bottom" timestamp="1584610496915">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1584592586449" />
-    <state width="1419" height="245" key="GridCell.Tab.0.center" timestamp="1584592586447">
+    <state width="1419" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1584610496915" />
+    <state width="1419" height="245" key="GridCell.Tab.0.center" timestamp="1584610496913">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1584592586447" />
-    <state width="1419" height="245" key="GridCell.Tab.0.left" timestamp="1584592586446">
+    <state width="1419" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1584610496913" />
+    <state width="1419" height="245" key="GridCell.Tab.0.left" timestamp="1584610496912">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1584592586446" />
-    <state width="1419" height="245" key="GridCell.Tab.0.right" timestamp="1584592586449">
+    <state width="1419" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1584610496912" />
+    <state width="1419" height="245" key="GridCell.Tab.0.right" timestamp="1584610496914">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1584592586449" />
+    <state width="1419" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1584610496914" />
     <state x="221" y="89" key="SettingsEditor" timestamp="1584506183295">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1584506183295" />
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1585042724899">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1585042724899" />
   </component>
 </project>

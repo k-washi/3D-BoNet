@@ -18,7 +18,7 @@ class Data_Configs:
     test_pts_num = 4096
 
 
-class DATA_QBS(object):
+class DATA_pc(object):
     def __init__(self, dataset_path, train_ids, test_ids, train_batch_size = 4):
         if not os.path.isdir(dataset_path):
             print("[WARNING] {} is not exsist".format(dataset_path))
@@ -139,7 +139,7 @@ class DATA_QBS(object):
 
     @staticmethod
     def load_fixed_points(file_path):
-        pc_xyzrgb, sem_labels, ins_labels = DATA_QBS.load_raw_data_file_s3dis_block(file_path)
+        pc_xyzrgb, sem_labels, ins_labels = DATA_pc.load_raw_data_file_s3dis_block(file_path)
 
         ### center xy within the block
         min_x = np.min(pc_xyzrgb[:, 0])
@@ -161,7 +161,7 @@ class DATA_QBS(object):
         ########
         sem_labels = sem_labels.reshape([-1])
         ins_labels = ins_labels.reshape([-1])
-        bbvert_padded_labels, pmask_padded_labels = DATA_QBS.get_bbvert_pmask_labels(pc_xyzrgb, ins_labels)
+        bbvert_padded_labels, pmask_padded_labels = DATA_pc.get_bbvert_pmask_labels(pc_xyzrgb, ins_labels)
 
         psem_onehot_labels = np.zeros((pc_xyzrgb.shape[0], Data_Configs.sem_num), dtype=np.int8)
         for idx, s in enumerate(sem_labels):
@@ -182,7 +182,7 @@ class DATA_QBS(object):
         bat_bbvert_padded_labels = []
         bat_pmask_padded_labels = []
         for file in bat_files:
-            pc, sem_labels, ins_labels, psem_onehot_labels, bbvert_padded_labels, pmask_padded_labels = DATA_QBS.load_fixed_points(
+            pc, sem_labels, ins_labels, psem_onehot_labels, bbvert_padded_labels, pmask_padded_labels = DATA_pc.load_fixed_points(
                 file)
             bat_pc.append(pc)
             bat_sem_labels.append(sem_labels)
@@ -211,7 +211,7 @@ class DATA_QBS(object):
         bat_pmask_padded_labels = []
         for i in idx:
             file = self.test_files[i]
-            pc, sem_labels, ins_labels, psem_onehot_labels, bbvert_padded_labels, pmask_padded_labels = DATA_QBS.load_fixed_points(
+            pc, sem_labels, ins_labels, psem_onehot_labels, bbvert_padded_labels, pmask_padded_labels = DATA_pc.load_fixed_points(
                 file)
             bat_pc.append(pc)
             bat_sem_labels.append(sem_labels)
@@ -237,7 +237,7 @@ class DATA_QBS(object):
         bat_bbvert_padded_labels = []
         bat_pmask_padded_labels = []
         for file in bat_files:
-            pc, sem_labels, ins_labels, psem_onehot_labels, bbvert_padded_labels, pmask_padded_labels = DATA_QBS.load_fixed_points(
+            pc, sem_labels, ins_labels, psem_onehot_labels, bbvert_padded_labels, pmask_padded_labels = DATA_pc.load_fixed_points(
                 file)
             bat_pc += [pc]
             bat_sem_labels += [sem_labels]
@@ -267,8 +267,8 @@ class DATA_QBS(object):
         print('train files shuffled!')
 
 if __name__ == '__main__':
-    h5_data_path = '/Users/washizakikai/dev/work/qbs/data/qbs-h5'
+    h5_data_path = '/Users/washizakikai/dev/work/pc/data/pc-h5'
     train_ids = [0]
     test_ids = [1]
-    data = DATA_QBS(h5_data_path, train_ids, test_ids, train_batch_size=4)
+    data = DATA_pc(h5_data_path, train_ids, test_ids, train_batch_size=4)
     _, _, _, _, _, _ = data.load_train_next_batch()

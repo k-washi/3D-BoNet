@@ -72,7 +72,7 @@ class Eval_Tools:
         :param train_areas:
         :return:
         """
-        from qbs_data_helper import Data_Configs as Data_Configs
+        from pc_data_helper import Data_Configs as Data_Configs
         configs = Data_Configs()
 
         mean_insSize_by_sem = {}
@@ -104,7 +104,7 @@ class Evaluation:
     def load_net_data(dataset_path, train_areas, test_areas, model_path):
         #######
         from main_3D_BoNet import BoNet
-        from qbs_data_helper import Data_Configs as Data_Configs
+        from pc_data_helper import Data_Configs as Data_Configs
         configs = Data_Configs()
         net = BoNet(configs=configs)
 
@@ -131,7 +131,7 @@ class Evaluation:
         print('Model restored sucessful!')
 
         ####### 3. load data
-        from qbs_data_helper import DATA_QBS as Data
+        from pc_data_helper import DATA_pc as Data
         data = Data(dataset_path, train_areas, test_areas)
 
         return net, data
@@ -176,7 +176,7 @@ class Evaluation:
 
     @staticmethod
     def evaluation(dataset_path, train_areas, result_path):
-        from qbs_data_helper import Data_Configs as Data_Configs
+        from pc_data_helper import Data_Configs as Data_Configs
         configs = Data_Configs()
         mean_insSize_by_sem = Eval_Tools.get_mean_insSize_by_sem(dataset_path, train_areas)
 
@@ -301,7 +301,7 @@ class Evaluation:
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', default='./qbs_train_data', help='path to input directory: pickle形式')
+    parser.add_argument('-i', default='./pc_train_data', help='path to input directory: pickle形式')
     parser.add_argument('-m', default='./log/train_mod/model.cptk',
                         help="path to trained model, ex: ./model_released/model.cptk")
     parser.add_argument('-c', default='./cnofig/config.ini', help='path to config.ini')
@@ -314,10 +314,10 @@ if __name__ == '__main__':
     os.environ["CUDA_VISIBLE_DEVICES"] = '0'  ## specify the GPU to use
 
     ####
-    #from qbs_data_helper import DATA_QBS as Data
+    #from pc_data_helper import DATA_pc as Data
 
     config_path = args.c
-    from qbs_configure import get_connfigure
+    from pc_configure import get_connfigure
 
     c_dic = get_connfigure(config_path)
     train_areas = c_dic['train']
