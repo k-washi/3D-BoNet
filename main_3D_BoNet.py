@@ -64,7 +64,7 @@ class BoNet:
 		import helper_pointnet2 as pnet2
 		points_num = tf.shape(X_pc)[1]
 		l0_xyz = X_pc[:,:,0:3]
-		l0_points = X_pc[:,:,3:9]
+		l0_points = X_pc[:,:,3:self.points_cc]
 
 		l1_xyz, l1_points, l1_indices = pnet2.pointnet_sa_module(l0_xyz, l0_points, npoint=1024, radius=0.1, nsample=32,
 			mlp=[32, 32, 64], mlp2=None, group_all=False, is_training=None, bn_decay=None, scope='layer1')
@@ -216,5 +216,4 @@ class BoNet:
 		else:
 			print ("model not found, all weights are initilized")
 			self.sess.run(tf.global_variables_initializer())
-
 		return 0

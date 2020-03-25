@@ -19,6 +19,9 @@ class Data_Configs:
 class Data_S3DIS:
     def __init__(self, dataset_path, train_areas, test_areas, train_batch_size=4):
         self.root_folder_4_traintest = dataset_path
+        self.dataset_path = dataset_path
+        self.test_areas = test_areas
+        self.train_areas = train_areas
         self.train_files = self.load_full_file_list(areas = train_areas)
         self.test_files = self.load_full_file_list(areas = test_areas)
         print('train files:', len(self.train_files))
@@ -69,7 +72,7 @@ class Data_S3DIS:
         points = fin['points'][block_id]
         semIns_labels = fin['labels'][block_id]
 
-        pc = np.concatenate([coords, points[:,3:9]], axis=-1)
+        pc = np.concatenate([coords, points[:,3:9]], axis=-1) # xyz, rgb xyz(normal)
         sem_labels = semIns_labels[:,0]
         ins_labels = semIns_labels[:,1]
 
@@ -114,7 +117,7 @@ class Data_S3DIS:
 
     @staticmethod
     def load_fixed_points(file_path):
-        pc_xyzrgb, sem_labels, ins_labels = Data_S3DIS.load_raw_data_file_s3dis_block(file_path)
+        pc_xyzrgb, sem_labels, ins_labels = Data_S3DIS.load_raw_data_file_s3dis_block(file_path) # xyz, rgb, xyz(normal)
 
         ### center xy within the block
         min_x = np.min(pc_xyzrgb[:,0]); max_x = np.max(pc_xyzrgb[:,0])

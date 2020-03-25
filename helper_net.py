@@ -1,6 +1,7 @@
 import numpy as np
 import tensorflow as tf
 from scipy.optimize import linear_sum_assignment
+import sys
 
 class Ops:
 
@@ -99,6 +100,8 @@ class Ops:
 
         def assign_mappings_valid_only(cost, gt_boxes):
             # return ordering : batch_size x num_instances
+            #tf.print(cost, output_stream=sys.stderr)
+            #tf.print(gt_boxes, output_stream=sys.stderr)
             loss_total = 0.
             batch_size, num_instances = cost.shape[:2]
             ordering = np.zeros(shape=[batch_size, num_instances]).astype(np.int32)
@@ -110,8 +113,19 @@ class Ops:
                         break
                     else:
                         ins_count += 1
+                
                 valid_cost = cost[idx][:ins_count]
+
+                #infに対応
+                valid_cost[np.isinf(valid_cost) == True] = 10**6
+                valid_cost = valid_cost.astype(np.int)
+                """
+                http://www.mycena.com.tw/jihunglin/BloodSugarMonitor/blob/master/venv/lib/python3.6/site-packages/scipy/optimize/_hungarian.py
+                inf, nanのcheckを入れる
+                """
+                #tf.print(valid_cost, output_stream=sys.stderr)
                 row_ind, col_ind = linear_sum_assignment(valid_cost)
+
                 unmapped = num_instances - ins_count
                 if unmapped > 0:
                     rest = np.array(range(ins_count, num_instances))
@@ -122,7 +136,7 @@ class Ops:
                 loss_total += cost[idx][row_ind, col_ind].sum()
                 ordering[idx] = np.reshape(col_ind, [1, -1])
             return ordering, (loss_total / float(batch_size * num_instances)).astype(np.float32)
-        ######
+
         ordering, loss_total = tf.py_func(assign_mappings_valid_only, [loss_matrix, bb_gt], [tf.int32, tf.float32])
 
         return ordering, loss_total
